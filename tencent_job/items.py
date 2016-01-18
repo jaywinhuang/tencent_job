@@ -11,7 +11,8 @@ import scrapy
 class TencentJobItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    name = scrapy.Field()
+    company = scrapy.Field()
+    title = scrapy.Field()
     id = scrapy.Field()
     duty = scrapy.Field()
     requirement = scrapy.Field()

@@ -13,8 +13,9 @@ class TencentJobSpider(CrawlSpider):
     allowed_domains = ['tencent.com']
     start_urls = ['http://hr.tencent.com/position.php']
     rules = [
-        Rule(LinkExtractor(allow=(r'\?\&start=\d{,5}')),follow=True,callback='parse_table'),
+        Rule(LinkExtractor(allow=(r'&start=\d{,2}')),follow=True,callback='parse_table'),
     ]
+    # &start=\d{,1}
     print rules
 
     def parse_table(self,response):
@@ -27,8 +28,8 @@ class TencentJobSpider(CrawlSpider):
     def parse_detail(self,response):
         log.msg('detail parsing~~~~~~~~~~~ ')
         item = response.meta['item']
-
-        item['name'] = response.xpath(r'//*[@id="sharetitle"]/text()').extract()[0]
+        item['company'] = 'tencent'
+        item['title'] = response.xpath(r'//*[@id="sharetitle"]/text()').extract()[0]
         item['link'] = response.url
         item['id'] = re.findall(r'(\d+)',response.url)[0]
         item['location'] = response.xpath(r'//*[@id="position_detail"]/div/table/tr[2]/td[1]/text()').extract()[0]

@@ -49,10 +49,10 @@ NEWSPIDER_MODULE = 'tencent_job.spiders'
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-DOWNLOADER_MIDDLEWARES = {
-    'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware':110,
-   'tencent_job.middlewares.ProxyMiddleware': 200,
-}
+# DOWNLOADER_MIDDLEWARES = {
+#     'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware':110,
+#    'tencent_job.middlewares.ProxyMiddleware': 200,
+# }
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
@@ -69,9 +69,9 @@ ITEM_PIPELINES = {
 # Mysql settings
 MYSQL_HOST = 'localhost'
 MYSQL_PORT = 3306
-MYSQL_DBNAME = 'local_db'
+MYSQL_DBNAME = 'jaywin_project'
 MYSQL_USER = 'root'
-MYSQL_PASSWORD = 'jaywin'
+MYSQL_PASSWORD = 'jaywinbwin'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

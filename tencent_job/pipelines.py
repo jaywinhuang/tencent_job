@@ -43,16 +43,16 @@ class TencentJobPipeline(object):
     def _do_upsert(self,conn,item,spider):
         log.msg('start insert mysql @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
 
-        conn.execute("""SELECT EXISTS (SELECT 1 from job_list_tencent where id = %s)""",(item['id']))
+        conn.execute("""SELECT EXISTS (SELECT 1 from all_job where id = %s)""",(item['id']))
         job_id_exist = conn.fetchone()[0]
 
         if job_id_exist:
-            conn.execute("""UPDATE job_list_tencent SET issue_time = %s""",(item['issue_time']))
+            conn.execute("""UPDATE all_job SET issue_time = %s""",(item['issue_time']))
 
         else:
-            conn.execute("""INSERT INTO job_list_tencent (name,id,duty,requirement,location,category,first_time,issue_time,link)
-            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
-            """,(item['name'],item['id'],item['duty'],item['requirement'],item['location'],item['category'],item['issue_time'],item['issue_time'],item['link']))
+            conn.execute("""INSERT INTO all_job (company,title,id,duty,requirement,location,category,first_time,issue_time,link)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            """,(item['company'],item['title'],item['id'],item['duty'],item['requirement'],item['location'],item['category'],item['issue_time'],item['issue_time'],item['link']))
 
     def _handle_error(self, failure, item, spider):
 
